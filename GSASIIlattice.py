@@ -1121,7 +1121,7 @@ def GetBraviasNum(center,system):
     raise ValueError('non-standard Bravais lattice center=%s, cell=%s' % (center,system))
 
 def make_sgtype(ibrav):
-    assert HAS_CCTBX, "GSASIIlattice.make_sgtype: CCTBX is not installed!"
+    if not HAS_CCTBX: return None
     symmorphic_sgs = ['F23', 'I23', 'P23', 'R3', 'P3', 'I4', 'P4', 'F222', 
         'I222', 'A222', 'B222', 'C222', 'P222', 'I2', 'C2', 'P2', 'P1']
     return sgtbx.space_group_type(symmorphic_sgs[ibrav])
