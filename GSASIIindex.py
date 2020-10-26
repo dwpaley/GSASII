@@ -928,6 +928,7 @@ def DoIndexPeaks(
     timeout=None,
     M20_min=2.0,
     X20_max=None
+    return_Nc=False
 ):
     'needs a doc string'
     
@@ -1011,7 +1012,8 @@ def DoIndexPeaks(
                                         (M20 >= M20_min) and
                                         (X20_max is None or X20 <= X20_max)
                                     ):
-                                        cell = [M20,X20,ibrav,a,b,c,alp,bet,gam,V,False,False,Nc]
+                                        cell = [M20,X20,ibrav,a,b,c,alp,bet,gam,V,False,False]
+                                        if return_Nc: cell.append(Nc)
                                         newcell = np.array(cell[3:10])
                                         if not np.allclose(newcell,lastcell):
                                             print ("%10.3f %3d %3d %10.5f %10.5f %10.5f %10.3f %10.3f %10.3f %10.2f %10.2f %s"  \
